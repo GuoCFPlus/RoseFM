@@ -101,6 +101,8 @@
 		C22403C01C4CC34700775387 /* SCPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403BC1C4CC34700775387 /* SCPopView.m */; };
 		C22403C31C4CC4C200775387 /* GD_ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403C21C4CC4C200775387 /* GD_ProvinceModel.m */; };
 		C22403C61C4CD0DC00775387 /* WGHBroadcastProvinceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403C51C4CD0DC00775387 /* WGHBroadcastProvinceViewController.m */; };
+		C22403C91C4CE32D00775387 /* WGHBroadcastRankMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403C81C4CE32D00775387 /* WGHBroadcastRankMoreTableViewController.m */; };
+		C22403CC1C4CE38A00775387 /* GD_BroadcastRankMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403CB1C4CE38A00775387 /* GD_BroadcastRankMoreTableViewCell.m */; };
 		C2F1ED191C49D0F4009AD28B /* GD_BroadcastTopRadioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1ED181C49D0F4009AD28B /* GD_BroadcastTopRadioModel.m */; };
 		C2F1ED1C1C49D74F009AD28B /* GD_BroadcastTopViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1ED1B1C49D74F009AD28B /* GD_BroadcastTopViewCell.m */; };
 		C2F1ED201C4A21E5009AD28B /* GDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1ED1F1C4A21E5009AD28B /* GDButton.m */; };
@@ -301,6 +303,10 @@
 		C22403C21C4CC4C200775387 /* GD_ProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_ProvinceModel.m; sourceTree = "<group>"; };
 		C22403C41C4CD0DC00775387 /* WGHBroadcastProvinceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGHBroadcastProvinceViewController.h; sourceTree = "<group>"; };
 		C22403C51C4CD0DC00775387 /* WGHBroadcastProvinceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGHBroadcastProvinceViewController.m; sourceTree = "<group>"; };
+		C22403C71C4CE32D00775387 /* WGHBroadcastRankMoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGHBroadcastRankMoreTableViewController.h; sourceTree = "<group>"; };
+		C22403C81C4CE32D00775387 /* WGHBroadcastRankMoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGHBroadcastRankMoreTableViewController.m; sourceTree = "<group>"; };
+		C22403CA1C4CE38A00775387 /* GD_BroadcastRankMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastRankMoreTableViewCell.h; sourceTree = "<group>"; };
+		C22403CB1C4CE38A00775387 /* GD_BroadcastRankMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_BroadcastRankMoreTableViewCell.m; sourceTree = "<group>"; };
 		C2F1ED171C49D0F4009AD28B /* GD_BroadcastTopRadioModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastTopRadioModel.h; sourceTree = "<group>"; };
 		C2F1ED181C49D0F4009AD28B /* GD_BroadcastTopRadioModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_BroadcastTopRadioModel.m; sourceTree = "<group>"; };
 		C2F1ED1A1C49D74F009AD28B /* GD_BroadcastTopViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastTopViewCell.h; sourceTree = "<group>"; };
@@ -468,6 +474,8 @@
 				C22403B01C4C8CA800775387 /* WGHBroadcastTypeTableViewController.m */,
 				C22403C41C4CD0DC00775387 /* WGHBroadcastProvinceViewController.h */,
 				C22403C51C4CD0DC00775387 /* WGHBroadcastProvinceViewController.m */,
+				C22403C71C4CE32D00775387 /* WGHBroadcastRankMoreTableViewController.h */,
+				C22403C81C4CE32D00775387 /* WGHBroadcastRankMoreTableViewController.m */,
 			);
 			path = WGH_Broadcast;
 			sourceTree = "<group>";
@@ -788,6 +796,8 @@
 				C2F1ED1B1C49D74F009AD28B /* GD_BroadcastTopViewCell.m */,
 				C2F1ED211C4A5B07009AD28B /* GD_BroadcastRecommendViewCell.h */,
 				C2F1ED221C4A5B08009AD28B /* GD_BroadcastRecommendViewCell.m */,
+				C22403CA1C4CE38A00775387 /* GD_BroadcastRankMoreTableViewCell.h */,
+				C22403CB1C4CE38A00775387 /* GD_BroadcastRankMoreTableViewCell.m */,
 			);
 			path = WGH_Broadcast;
 			sourceTree = "<group>";
@@ -1007,6 +1017,7 @@
 				C22403C31C4CC4C200775387 /* GD_ProvinceModel.m in Sources */,
 				C2F1ED1C1C49D74F009AD28B /* GD_BroadcastTopViewCell.m in Sources */,
 				508D2D5E1C45EFED00B77E9D /* UIView+WebCacheOperation.m in Sources */,
+				C22403CC1C4CE38A00775387 /* GD_BroadcastRankMoreTableViewCell.m in Sources */,
 				508D2D2F1C45EFED00B77E9D /* AppDelegate.m in Sources */,
 				508D2D321C45EFED00B77E9D /* AFHTTPSessionManager.m in Sources */,
 				501B556C1C47AC7D00F2BF8C /* WGHRecommendSrollModel.m in Sources */,
@@ -1016,6 +1027,7 @@
 				C22403BE1C4CC34700775387 /* SCNavTabBarController.m in Sources */,
 				508D2D3C1C45EFED00B77E9D /* MJRefreshAutoFooter.m in Sources */,
 				508D2D4B1C45EFED00B77E9D /* MJRefreshConst.m in Sources */,
+				C22403C91C4CE32D00775387 /* WGHBroadcastRankMoreTableViewController.m in Sources */,
 				508D2D4F1C45EFED00B77E9D /* MKAnnotationView+WebCache.m in Sources */,
 				508D2D5A1C45EFED00B77E9D /* UIImage+MultiFormat.m in Sources */,
 				508D2DAB1C4691A200B77E9D /* WGHClassFyCollectionViewController.m in Sources */,

@@ -126,6 +126,8 @@ static NSString * const topCellId = @"topCellId";
         dispatch_async(dispatch_get_main_queue(), ^{
             // 绘制视图
             [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         });
     }];
     
@@ -140,6 +142,8 @@ static NSString * const topCellId = @"topCellId";
         dispatch_async(dispatch_get_main_queue(), ^{
             // 绘制视图
             [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
         });
     }];
     
@@ -162,12 +166,37 @@ static NSString * const topCellId = @"topCellId";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:recommendMainCellId];
     [self.tableView registerClass:[GD_BroadcastTopViewCell class] forCellReuseIdentifier:topCellId];
     
-    //添加推荐数据
-    [self requestRecommendData];
-    //添加排行榜数据
-    [self requestTopData];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 请求数据
+        [self requestData];
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+    self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
+        // 请求数据
+        [self requestData];
+    }];
+
 }
 
+// 请求数据
+- (void)requestData {
+    
+    [[WGHNetWorking shareAcquireNetworkState] acquireCurrentNetworkState:^(int result) {
+        if (result != 0) {
+            //添加推荐数据
+            [self requestRecommendData];
+            //添加排行榜数据
+            [self requestTopData];
+            
+        }else {
+            [[WGHNetWorking shareAcquireNetworkState] showPrompt];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }
+    }];
+}
 
 
 
@@ -258,26 +287,45 @@ static NSString * const topCellId = @"topCellId";
     {
         titleLabel.text = @"排行榜";
         
-        UILabel *moreLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame), kGap_5, kGap_50, kGap_20)];
-        moreLabel.text = @"更多 >";
-        moreLabel.font = [UIFont systemFontOfSize:13];
-        moreLabel.textColor = [UIColor grayColor];
-        [headerView addSubview:moreLabel];
+        UIButton *moreButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        moreButton.frame = CGRectMake(CGRectGetMaxX(titleLabel.frame), kGap_5, kGap_50, kGap_20);
+        [moreButton setTitle:@"更多 >" forState:UIControlStateNormal];
+        moreButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        moreButton.tintColor = [UIColor grayColor];
+        [moreButton addTarget:self action:@selector(changePageRankMore) forControlEvents:UIControlEventTouchUpInside];
+        [headerView addSubview:moreButton];
     }
     else
     {
         titleLabel.text = @"播放历史";
         
-        UILabel *moreLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame), kGap_5, kGap_50, kGap_20)];
-        moreLabel.text = @"更多 >";
-        moreLabel.font = [UIFont systemFontOfSize:13];
-        moreLabel.textColor = [UIColor grayColor];
-        [headerView addSubview:moreLabel];
+        UIButton *moreButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        moreButton.frame = CGRectMake(CGRectGetMaxX(titleLabel.frame), kGap_5, kGap_50, kGap_20);
+        [moreButton setTitle:@"更多 >" forState:UIControlStateNormal];
+        moreButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        moreButton.tintColor = [UIColor grayColor];
+        [moreButton addTarget:self action:@selector(changePageMore) forControlEvents:UIControlEventTouchUpInside];
+        [headerView addSubview:moreButton];
     }
     
     [headerView addSubview:titleLabel];
     
     return headerView;
+}
+
+//排行榜更多点击事件
+-(void)changePageRankMore{
+    
+    WGHBroadcastRankMoreTableViewController *rankMoreVC = [[WGHBroadcastRankMoreTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:rankMoreVC animated:YES];
+    
+}
+
+//播放历史更多点击事件
+-(void)changePageMore{
+    
+    
+    
 }
 
 

@@ -46,10 +46,11 @@
         WGHBroadcastTypeTableViewController *provinceVC = [[WGHBroadcastTypeTableViewController alloc]initWithStyle:UITableViewStylePlain];
         GD_ProvinceModel *model = self.provinceArr[i];
         provinceVC.title = model.provinceName;
-        provinceVC.radioType = @"2";
-        provinceVC.provinceCode = model.provinceCode;
+        provinceVC.radioType = @"4";
+        provinceVC.provinceCode = [NSString stringWithFormat:@"%@",model.provinceCode];
         //provinceVC.tableView.backgroundColor = [UIColor colorWithRed:arc4random()%255/256.0 green:arc4random()%255/256.0 blue:arc4random()%255/256.0 alpha:1];
         [arr addObject:provinceVC];
+        
     }
     
     SCNavTabBarController *navTabBarController = [[SCNavTabBarController alloc]init];

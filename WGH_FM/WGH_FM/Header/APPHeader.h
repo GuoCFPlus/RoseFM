@@ -36,11 +36,13 @@
 #import "WGHBroadcastMainTableViewController.h"
 #import "WGHBroadcastTypeTableViewController.h"
 #import "WGHBroadcastProvinceViewController.h"
+#import "WGHBroadcastRankMoreTableViewController.h"
 
 #import "GD_BroadcastTypeView.h"
 #import "GD_BroadcastTopViewCell.h"
 #import "GDButton.h"
 #import "GD_BroadcastRecommendViewCell.h"
+#import "GD_BroadcastRankMoreTableViewCell.h"
 
 #import "GD_BroadcastRecommandRadioList.h"
 #import "GD_BroadcastTopRadioModel.h"

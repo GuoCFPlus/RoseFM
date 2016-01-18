@@ -1,82 +1,52 @@
 //
-//  WGHBroadcastTypeTableViewController.m
+//  WGHBroadcastRankMoreTableViewController.m
 //  WGH_FM
 //
 //  Created by lanou3g on 16/1/18.
 //  Copyright © 2016年 吴凯强. All rights reserved.
 //
 
-#import "WGHBroadcastTypeTableViewController.h"
+#import "WGHBroadcastRankMoreTableViewController.h"
 
-@interface WGHBroadcastTypeTableViewController ()
+@interface WGHBroadcastRankMoreTableViewController ()
 
 @property (strong, nonatomic)NSMutableArray *dataArr;
 
-@property (assign, nonatomic)NSInteger pageNum;
-
 @end
+static NSString *const rankCellId = @"rankCellId";
+@implementation WGHBroadcastRankMoreTableViewController
 
-static NSString *const typeCellId = @"typeCellId";
-
-@implementation WGHBroadcastTypeTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"电台排行榜";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerClass:[GD_BroadcastRankMoreTableViewCell class] forCellReuseIdentifier:rankCellId];
     
-    [self.tableView registerClass:[GD_BroadcastTopViewCell class] forCellReuseIdentifier:typeCellId];
+    //加载排行数据
+    [self requestRecommendData];
     
-    
-    
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    if (![self.radioType isEqualToString:@"4"]) {
-        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            
-            self.dataArr = [NSMutableArray array];
-            //页数
-            self.pageNum = 1;
-            // 请求数据
-            [self requestData];
-        }];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [self.tableView.mj_header beginRefreshing];
+        // 请求数据
+        [self requestData];
+    }];
     
-        self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
-            self.pageNum ++;
-            
-            // 请求数据
-            [self requestData];
-        }];
-    }
-    else
-    {
-        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        self.dataArr = [NSMutableArray array];
-        //页数
-        self.pageNum = 1;
-        // 根据页数、电台类型、所属省市获取电台列表
-        [self requestRecommendData];
-        }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
         
-        [self.tableView.mj_header beginRefreshing];
-        
-        self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
-            self.pageNum ++;
-            // 根据页数、电台类型、所属省市获取电台列表
-            [self requestRecommendData];
-        }];
-
-
-    }
+        // 请求数据
+        [self requestData];
+    }];
+    
+    
 }
 
 // 请求数据
@@ -84,7 +54,7 @@ static NSString *const typeCellId = @"typeCellId";
     
     [[WGHNetWorking shareAcquireNetworkState] acquireCurrentNetworkState:^(int result) {
         if (result != 0) {
-            // 根据页数、电台类型、所属省市获取电台列表
+            // 获取排名前一百的电台列表
             [self requestRecommendData];
             
         }else {
@@ -95,23 +65,13 @@ static NSString *const typeCellId = @"typeCellId";
     }];
 }
 
-// 根据页数、电台类型、所属省市获取电台列表
+//加载排行数据
 - (void)requestRecommendData {
     
     __weak typeof(self) weak = self;
     
-    //http://live.ximalaya.com/live-web/v1/getRadiosListByType?pageNum=1&radioType=2&device=android&provinceCode=110000&pageSize=15
-    
-    if ([self.radioType isEqualToString:@"4"]) {
-        self.radioType = @"2";
-    }
-    
-    NSString *typeURL = [NSString stringWithFormat:@"http://live.ximalaya.com/live-web/v1/getRadiosListByType?pageNum=%ld&radioType=%@&device=android&provinceCode=%@&pageSize=15",self.pageNum,self.radioType,self.provinceCode];
-    DLog(@"%@",typeURL);
-    
-    [[WGHRequestData shareRequestData] requestClassBroadcastTypeDataWithURL:typeURL block:^(NSMutableArray *array) {
-        [weak.dataArr addObjectsFromArray:array];
-        
+    [[WGHRequestData shareRequestData] requestClassBroadcastTypeDataWithURL:WGH_RankingListURL block:^(NSMutableArray *array) {
+        weak.dataArr = [NSMutableArray arrayWithArray:array];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 绘制视图
             [self.tableView reloadData];
@@ -121,6 +81,9 @@ static NSString *const typeCellId = @"typeCellId";
     }];
     
 }
+
+
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -140,25 +103,39 @@ static NSString *const typeCellId = @"typeCellId";
     return self.dataArr.count;
 }
 
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    GD_BroadcastTopViewCell *cell = [tableView dequeueReusableCellWithIdentifier:typeCellId forIndexPath:indexPath];
+    GD_BroadcastRankMoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rankCellId forIndexPath:indexPath];
     
     GD_BroadcastTopRadioModel *model = self.dataArr[indexPath.row];
     if (model != nil) {
+        cell.numberLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row + 1] ;
+        if ([cell.numberLabel.text isEqualToString:@"1"]) {
+            cell.numberLabel.textColor = [UIColor redColor];
+        }
+        else if([cell.numberLabel.text isEqualToString:@"2"]){
+            cell.numberLabel.textColor = [UIColor orangeColor];
+        }
+        else if([cell.numberLabel.text isEqualToString:@"3"])
+        {
+            cell.numberLabel.textColor = [UIColor cyanColor];
+        }
+        else
+        {
+            cell.numberLabel.textColor = [UIColor blackColor];
+        }
         [cell.radioCoverLargeImgView sd_setImageWithURL:[NSURL URLWithString:model.radioCoverLarge] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         cell.rnameLabel.text = model.rname;
-        cell.programNameLabel.text = [NSString stringWithFormat:@"直播中：%@",model.programName];
-        cell.radioPlayCountLabel.text = [NSString stringWithFormat:@"收听人数：%.1f万人",[model.radioPlayCount floatValue] /10000];
+        cell.programNameLabel.text = model.programName;
+        cell.radioPlayCountLabel.text = [NSString stringWithFormat:@"%.1f万人",[model.radioPlayCount floatValue] /10000];
         [cell.playButton addTarget:self action:@selector(playBroadcast:) forControlEvents:UIControlEventTouchUpInside];
         cell.playButton.isPlay = YES;
         
     }
-    
     return cell;
 }
 
@@ -174,6 +151,7 @@ static NSString *const typeCellId = @"typeCellId";
         sender.isPlay = YES;
     }
 }
+
 
 /*
 // Override to support conditional editing of the table view.

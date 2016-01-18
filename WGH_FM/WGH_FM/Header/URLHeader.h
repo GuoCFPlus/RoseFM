@@ -53,6 +53,7 @@
 //推荐电台
 #define WGH_RecommendRadioURL @"http://live.ximalaya.com/live-web/v1/getHomePageRadiosList?device=iPhone"
 
+//排行
 #define WGH_RankingListURL @"http://live.ximalaya.com/live-web/v1/getTopRadiosList?device=iPhone&radioNum=100"
 
 
