@@ -34,7 +34,15 @@
 // 分类数据请求
 - (void)requestClassFyListDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block;
 
+#pragma mark ------广播-------
+//推荐
+- (void)requestClassBRDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block;
+//排行榜
+- (void)requestClassBTDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block;
 
-
+//本地台解析
+- (void)requestClassBroadcastTypeDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block;
+//省市解析
+- (void)requestClassBroadcastProvinceDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block;
 
 @end

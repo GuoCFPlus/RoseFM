@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WGHBroadcastMainTableViewController : UITableViewController
+@interface WGHBroadcastMainTableViewController : UITableViewController 
 
 @end

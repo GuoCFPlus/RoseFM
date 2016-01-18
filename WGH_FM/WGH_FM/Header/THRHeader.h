@@ -18,4 +18,9 @@
 #import "UIImageView+WebCache.h"
 #import "UMSocial.h"
 #import "Reachability.h"
+
+
+//广播省市台省市选项卡
+#import "SCNavTabBarController.h"
+
 #endif

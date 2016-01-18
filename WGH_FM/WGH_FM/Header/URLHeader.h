@@ -43,7 +43,9 @@
 #define WGH_CountryURL @"http://live.ximalaya.com/live-web/v1/getRadiosListByType?pageNum=%d&radioType=1&device=android&pageSize=15"   // pageNmu
 
 //省市
+#define WGH_ProvincesTitleURL @"http://live.ximalaya.com/live-web/v1/getProvinceList?device=iPhone"
 
+#define WGH_OneProvincesURL @"http://live.ximalaya.com/live-web/v1/getRadiosListByType?device=iPhone&pageNum=%d&pageSize=30&provinceCode=%d&radioType=2"   // pageNum 数据刷新 //provinceCode  拼接省市code
 
 //网络
 #define WGH_NetworkURL @"http://live.ximalaya.com/live-web/v1/getRadiosListByType?pageNum=%d&radioType=3&device=android&pageSize=15"   //pageNum

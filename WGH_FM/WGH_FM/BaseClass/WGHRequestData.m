@@ -81,13 +81,82 @@ static WGHRequestData *request = nil;
 
 
 
+#pragma mark ------广播-------
+//推荐电台
+- (void)requestClassBRDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block {
+    
+    AFHTTPRequestOperationManager * manger = [AFHTTPRequestOperationManager manager];
+    [manger GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary * dic = (NSDictionary *)responseObject;
+        NSArray * array = [dic[@"result"] valueForKey:@"recommandRadioList"];
+        self.dataArray=[NSMutableArray array];
+        for (NSDictionary *dict in array) {
+            GD_BroadcastRecommandRadioList * model = [[GD_BroadcastRecommandRadioList alloc]initWithDictionary:dict];
+            [self.dataArray addObject:model];
+        }
+        block(self.dataArray);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+}
 
+//排行榜
+- (void)requestClassBTDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block {
+    
+    AFHTTPRequestOperationManager * manger = [AFHTTPRequestOperationManager manager];
+    [manger GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary * dic = (NSDictionary *)responseObject;
+        NSArray * array = [dic[@"result"] valueForKey:@"topRadioList"];
+        self.dataArray=[NSMutableArray array];
+        for (NSDictionary *dict in array) {
+            GD_BroadcastTopRadioModel * model = [[GD_BroadcastTopRadioModel alloc]initWithDictionary:dict];
+            [self.dataArray addObject:model];
+        }
+        block(self.dataArray);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+}
 
+//本地台解析
+- (void)requestClassBroadcastTypeDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block {
+    
+    AFHTTPRequestOperationManager * manger = [AFHTTPRequestOperationManager manager];
+    [manger GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary * dic = (NSDictionary *)responseObject;
+        NSArray * array = dic[@"result"];
+        self.dataArray=[NSMutableArray array];
+        for (NSDictionary *dict in array) {
+            GD_BroadcastTopRadioModel * model = [[GD_BroadcastTopRadioModel alloc]initWithDictionary:dict];
+            [self.dataArray addObject:model];
+        }
+        block(self.dataArray);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+}
 
-
-
-
-
+//省市解析
+- (void)requestClassBroadcastProvinceDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block {
+    
+    AFHTTPRequestOperationManager * manger = [AFHTTPRequestOperationManager manager];
+    [manger GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary * dic = (NSDictionary *)responseObject;
+        NSArray * array = dic[@"result"];
+        self.dataArray=[NSMutableArray array];
+        for (NSDictionary *dict in array) {
+            GD_ProvinceModel * model = [[GD_ProvinceModel alloc]initWithDictionary:dict];
+            [self.dataArray addObject:model];
+        }
+        block(self.dataArray);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+}
 
 
 

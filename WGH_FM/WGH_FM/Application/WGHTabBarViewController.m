@@ -21,10 +21,10 @@
     [self addChildVc:findVC title:@"小编推荐" image:[UIImage imageNamed:@"wgh_tabbar_find×32"] selectedImage:[UIImage imageNamed:@"wgh_tabbar_find×32_1"]];
     
     
-    WGHBroadcastMainTableViewController *broadcastVC =[[WGHBroadcastMainTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    WGHBroadcastMainTableViewController *broadcastVC =[[WGHBroadcastMainTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self addChildVc:broadcastVC title:@"广播" image:[UIImage imageNamed:@"wgh_tabbar_guangbo×32"] selectedImage:[UIImage imageNamed:@"wgh_tabbar_guangbo×32_1"]];
     
-    WGHHotListMainTableViewController *hotListVC = [[WGHHotListMainTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    WGHHotListMainTableViewController *hotListVC = [[WGHHotListMainTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self addChildVc:hotListVC title:@"榜单" image:[UIImage imageNamed:@"wgh_tabbar_bangdan×32"] selectedImage:[UIImage imageNamed:@"wgh_tabbar_bangdan×32_1"]];
     
     

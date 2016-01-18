@@ -93,7 +93,18 @@
 		508D2DB71C47293E00B77E9D /* WGHNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D2DB61C47293E00B77E9D /* WGHNetWorking.m */; };
 		50D566901C473F21007C279C /* WGHCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D5668F1C473F21007C279C /* WGHCollectionReusableView.m */; };
 		C2009C9C1C47D95100D0D446 /* GD_BroadcastTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2009C9B1C47D95100D0D446 /* GD_BroadcastTypeView.m */; };
-		C20BB8241C489362000B4F18 /* GD_BroadcastRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20BB8221C489362000B4F18 /* GD_BroadcastRecommendCell.m */; };
+		C20BB8321C48F6BE000B4F18 /* GD_BroadcastRecommandRadioList.m in Sources */ = {isa = PBXBuildFile; fileRef = C20BB8311C48F6BE000B4F18 /* GD_BroadcastRecommandRadioList.m */; };
+		C22403B11C4C8CA800775387 /* WGHBroadcastTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403B01C4C8CA800775387 /* WGHBroadcastTypeTableViewController.m */; };
+		C22403BD1C4CC34700775387 /* SCNavTabBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C22403B41C4CC34700775387 /* SCNavTabBar.bundle */; };
+		C22403BE1C4CC34700775387 /* SCNavTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403B71C4CC34700775387 /* SCNavTabBarController.m */; };
+		C22403BF1C4CC34700775387 /* SCNavTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403BA1C4CC34700775387 /* SCNavTabBar.m */; };
+		C22403C01C4CC34700775387 /* SCPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403BC1C4CC34700775387 /* SCPopView.m */; };
+		C22403C31C4CC4C200775387 /* GD_ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403C21C4CC4C200775387 /* GD_ProvinceModel.m */; };
+		C22403C61C4CD0DC00775387 /* WGHBroadcastProvinceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22403C51C4CD0DC00775387 /* WGHBroadcastProvinceViewController.m */; };
+		C2F1ED191C49D0F4009AD28B /* GD_BroadcastTopRadioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1ED181C49D0F4009AD28B /* GD_BroadcastTopRadioModel.m */; };
+		C2F1ED1C1C49D74F009AD28B /* GD_BroadcastTopViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1ED1B1C49D74F009AD28B /* GD_BroadcastTopViewCell.m */; };
+		C2F1ED201C4A21E5009AD28B /* GDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1ED1F1C4A21E5009AD28B /* GDButton.m */; };
+		C2F1ED231C4A5B08009AD28B /* GD_BroadcastRecommendViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1ED221C4A5B08009AD28B /* GD_BroadcastRecommendViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -274,8 +285,30 @@
 		50D5668F1C473F21007C279C /* WGHCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGHCollectionReusableView.m; sourceTree = "<group>"; };
 		C2009C9A1C47D95100D0D446 /* GD_BroadcastTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastTypeView.h; sourceTree = "<group>"; };
 		C2009C9B1C47D95100D0D446 /* GD_BroadcastTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_BroadcastTypeView.m; sourceTree = "<group>"; };
-		C20BB8211C489362000B4F18 /* GD_BroadcastRecommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastRecommendCell.h; sourceTree = "<group>"; };
-		C20BB8221C489362000B4F18 /* GD_BroadcastRecommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_BroadcastRecommendCell.m; sourceTree = "<group>"; };
+		C20BB8301C48F6BE000B4F18 /* GD_BroadcastRecommandRadioList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastRecommandRadioList.h; sourceTree = "<group>"; };
+		C20BB8311C48F6BE000B4F18 /* GD_BroadcastRecommandRadioList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_BroadcastRecommandRadioList.m; sourceTree = "<group>"; };
+		C22403AF1C4C8CA800775387 /* WGHBroadcastTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGHBroadcastTypeTableViewController.h; sourceTree = "<group>"; };
+		C22403B01C4C8CA800775387 /* WGHBroadcastTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGHBroadcastTypeTableViewController.m; sourceTree = "<group>"; };
+		C22403B31C4CC34700775387 /* CommonMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
+		C22403B41C4CC34700775387 /* SCNavTabBar.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SCNavTabBar.bundle; sourceTree = "<group>"; };
+		C22403B61C4CC34700775387 /* SCNavTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNavTabBarController.h; sourceTree = "<group>"; };
+		C22403B71C4CC34700775387 /* SCNavTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNavTabBarController.m; sourceTree = "<group>"; };
+		C22403B91C4CC34700775387 /* SCNavTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNavTabBar.h; sourceTree = "<group>"; };
+		C22403BA1C4CC34700775387 /* SCNavTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNavTabBar.m; sourceTree = "<group>"; };
+		C22403BB1C4CC34700775387 /* SCPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPopView.h; sourceTree = "<group>"; };
+		C22403BC1C4CC34700775387 /* SCPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPopView.m; sourceTree = "<group>"; };
+		C22403C11C4CC4C200775387 /* GD_ProvinceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_ProvinceModel.h; sourceTree = "<group>"; };
+		C22403C21C4CC4C200775387 /* GD_ProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_ProvinceModel.m; sourceTree = "<group>"; };
+		C22403C41C4CD0DC00775387 /* WGHBroadcastProvinceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGHBroadcastProvinceViewController.h; sourceTree = "<group>"; };
+		C22403C51C4CD0DC00775387 /* WGHBroadcastProvinceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGHBroadcastProvinceViewController.m; sourceTree = "<group>"; };
+		C2F1ED171C49D0F4009AD28B /* GD_BroadcastTopRadioModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastTopRadioModel.h; sourceTree = "<group>"; };
+		C2F1ED181C49D0F4009AD28B /* GD_BroadcastTopRadioModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_BroadcastTopRadioModel.m; sourceTree = "<group>"; };
+		C2F1ED1A1C49D74F009AD28B /* GD_BroadcastTopViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastTopViewCell.h; sourceTree = "<group>"; };
+		C2F1ED1B1C49D74F009AD28B /* GD_BroadcastTopViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_BroadcastTopViewCell.m; sourceTree = "<group>"; };
+		C2F1ED1E1C4A21E5009AD28B /* GDButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDButton.h; sourceTree = "<group>"; };
+		C2F1ED1F1C4A21E5009AD28B /* GDButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDButton.m; sourceTree = "<group>"; };
+		C2F1ED211C4A5B07009AD28B /* GD_BroadcastRecommendViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastRecommendViewCell.h; sourceTree = "<group>"; };
+		C2F1ED221C4A5B08009AD28B /* GD_BroadcastRecommendViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_BroadcastRecommendViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +326,14 @@
 		501B55601C47AC7D00F2BF8C /* WGH_Broadcast */ = {
 			isa = PBXGroup;
 			children = (
+				C20BB8301C48F6BE000B4F18 /* GD_BroadcastRecommandRadioList.h */,
+				C20BB8311C48F6BE000B4F18 /* GD_BroadcastRecommandRadioList.m */,
+				C2F1ED171C49D0F4009AD28B /* GD_BroadcastTopRadioModel.h */,
+				C2F1ED181C49D0F4009AD28B /* GD_BroadcastTopRadioModel.m */,
+				C22403C11C4CC4C200775387 /* GD_ProvinceModel.h */,
+				C22403C21C4CC4C200775387 /* GD_ProvinceModel.m */,
+				C2F1ED1E1C4A21E5009AD28B /* GDButton.h */,
+				C2F1ED1F1C4A21E5009AD28B /* GDButton.m */,
 			);
 			path = WGH_Broadcast;
 			sourceTree = "<group>";
@@ -423,6 +464,10 @@
 			children = (
 				501B556F1C47B13F00F2BF8C /* WGHBroadcastMainTableViewController.h */,
 				501B55701C47B13F00F2BF8C /* WGHBroadcastMainTableViewController.m */,
+				C22403AF1C4C8CA800775387 /* WGHBroadcastTypeTableViewController.h */,
+				C22403B01C4C8CA800775387 /* WGHBroadcastTypeTableViewController.m */,
+				C22403C41C4CD0DC00775387 /* WGHBroadcastProvinceViewController.h */,
+				C22403C51C4CD0DC00775387 /* WGHBroadcastProvinceViewController.m */,
 			);
 			path = WGH_Broadcast;
 			sourceTree = "<group>";
@@ -505,6 +550,7 @@
 		508D2CA91C45EFED00B77E9D /* TheThird */ = {
 			isa = PBXGroup;
 			children = (
+				C22403B21C4CC34700775387 /* SCNavTabBar */,
 				508D2CAA1C45EFED00B77E9D /* AFNetworking */,
 				508D2CBE1C45EFED00B77E9D /* DCPicscrollView */,
 				508D2CC51C45EFED00B77E9D /* MJRefresh */,
@@ -738,8 +784,10 @@
 			children = (
 				C2009C9A1C47D95100D0D446 /* GD_BroadcastTypeView.h */,
 				C2009C9B1C47D95100D0D446 /* GD_BroadcastTypeView.m */,
-				C20BB8211C489362000B4F18 /* GD_BroadcastRecommendCell.h */,
-				C20BB8221C489362000B4F18 /* GD_BroadcastRecommendCell.m */,
+				C2F1ED1A1C49D74F009AD28B /* GD_BroadcastTopViewCell.h */,
+				C2F1ED1B1C49D74F009AD28B /* GD_BroadcastTopViewCell.m */,
+				C2F1ED211C4A5B07009AD28B /* GD_BroadcastRecommendViewCell.h */,
+				C2F1ED221C4A5B08009AD28B /* GD_BroadcastRecommendViewCell.m */,
 			);
 			path = WGH_Broadcast;
 			sourceTree = "<group>";
@@ -790,6 +838,37 @@
 		508D2D9C1C4660F500B77E9D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C22403B21C4CC34700775387 /* SCNavTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				C22403B31C4CC34700775387 /* CommonMacro.h */,
+				C22403B41C4CC34700775387 /* SCNavTabBar.bundle */,
+				C22403B51C4CC34700775387 /* ViewControllers */,
+				C22403B81C4CC34700775387 /* Views */,
+			);
+			path = SCNavTabBar;
+			sourceTree = "<group>";
+		};
+		C22403B51C4CC34700775387 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C22403B61C4CC34700775387 /* SCNavTabBarController.h */,
+				C22403B71C4CC34700775387 /* SCNavTabBarController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C22403B81C4CC34700775387 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C22403B91C4CC34700775387 /* SCNavTabBar.h */,
+				C22403BA1C4CC34700775387 /* SCNavTabBar.m */,
+				C22403BB1C4CC34700775387 /* SCPopView.h */,
+				C22403BC1C4CC34700775387 /* SCPopView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -853,6 +932,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				508D2D651C45EFED00B77E9D /* UMShareEditViewControlleriPad.xib in Resources */,
+				C22403BD1C4CC34700775387 /* SCNavTabBar.bundle in Resources */,
 				508D2D671C45EFED00B77E9D /* UMSnsAccountViewController.xib in Resources */,
 				508D2D621C45EFED00B77E9D /* UMSCommentInputController.xib in Resources */,
 				508D2D611C45EFED00B77E9D /* UMSCommentDetailController.xib in Resources */,
@@ -879,6 +959,8 @@
 			files = (
 				508D2D5C1C45EFED00B77E9D /* UIImageView+HighlightedWebCache.m in Sources */,
 				501B55741C47B1C100F2BF8C /* WGHHotListMainTableViewController.m in Sources */,
+				C2F1ED201C4A21E5009AD28B /* GDButton.m in Sources */,
+				C22403BF1C4CC34700775387 /* SCNavTabBar.m in Sources */,
 				508D2D481C45EFED00B77E9D /* MJRefreshNormalHeader.m in Sources */,
 				508D2D3E1C45EFED00B77E9D /* MJRefreshComponent.m in Sources */,
 				508D2D361C45EFED00B77E9D /* AFURLRequestSerialization.m in Sources */,
@@ -891,22 +973,27 @@
 				508D2D821C461A1A00B77E9D /* WGHTabBarViewController.m in Sources */,
 				501B556B1C47AC7D00F2BF8C /* WGHClassFyModel.m in Sources */,
 				508D2D6C1C45F05300B77E9D /* MainScrollViewController.m in Sources */,
+				C2F1ED231C4A5B08009AD28B /* GD_BroadcastRecommendViewCell.m in Sources */,
 				508D2D581C45EFED00B77E9D /* UIButton+WebCache.m in Sources */,
 				508D2D4E1C45EFED00B77E9D /* UIView+MJExtension.m in Sources */,
 				501B555F1C478C1D00F2BF8C /* WGHAlbumListTableViewController.m in Sources */,
+				C22403C61C4CD0DC00775387 /* WGHBroadcastProvinceViewController.m in Sources */,
 				508D2D421C45EFED00B77E9D /* MJRefreshAutoNormalFooter.m in Sources */,
 				508D2D3F1C45EFED00B77E9D /* MJRefreshFooter.m in Sources */,
 				508D2D591C45EFED00B77E9D /* UIImage+GIF.m in Sources */,
+				C22403B11C4C8CA800775387 /* WGHBroadcastTypeTableViewController.m in Sources */,
 				508D2D571C45EFED00B77E9D /* SDWebImagePrefetcher.m in Sources */,
 				508D2D7F1C46195F00B77E9D /* WGHUserMainViewController.m in Sources */,
 				501B55591C47694D00F2BF8C /* WGHOneClassFyListViewController.m in Sources */,
 				508D2D301C45EFED00B77E9D /* AFHTTPRequestOperation.m in Sources */,
 				508D2D491C45EFED00B77E9D /* MJRefreshStateHeader.m in Sources */,
+				C22403C01C4CC34700775387 /* SCPopView.m in Sources */,
 				508D2D411C45EFED00B77E9D /* MJRefreshAutoGifFooter.m in Sources */,
 				508D2D8B1C4633E900B77E9D /* WGHTabBar.m in Sources */,
 				508D2D521C45EFED00B77E9D /* SDWebImageCompat.m in Sources */,
 				508D2D541C45EFED00B77E9D /* SDWebImageDownloader.m in Sources */,
 				508D2D551C45EFED00B77E9D /* SDWebImageDownloaderOperation.m in Sources */,
+				C20BB8321C48F6BE000B4F18 /* GD_BroadcastRecommandRadioList.m in Sources */,
 				508D2D531C45EFED00B77E9D /* SDWebImageDecoder.m in Sources */,
 				508D2D731C4616E900B77E9D /* WGHRequestData.m in Sources */,
 				508D2D561C45EFED00B77E9D /* SDWebImageManager.m in Sources */,
@@ -917,12 +1004,16 @@
 				508D2D471C45EFED00B77E9D /* MJRefreshGifHeader.m in Sources */,
 				508D2D371C45EFED00B77E9D /* AFURLResponseSerialization.m in Sources */,
 				C2009C9C1C47D95100D0D446 /* GD_BroadcastTypeView.m in Sources */,
+				C22403C31C4CC4C200775387 /* GD_ProvinceModel.m in Sources */,
+				C2F1ED1C1C49D74F009AD28B /* GD_BroadcastTopViewCell.m in Sources */,
 				508D2D5E1C45EFED00B77E9D /* UIView+WebCacheOperation.m in Sources */,
 				508D2D2F1C45EFED00B77E9D /* AppDelegate.m in Sources */,
 				508D2D321C45EFED00B77E9D /* AFHTTPSessionManager.m in Sources */,
 				501B556C1C47AC7D00F2BF8C /* WGHRecommendSrollModel.m in Sources */,
 				501B555C1C477C5200F2BF8C /* WGHFindMainTableViewController.m in Sources */,
+				C2F1ED191C49D0F4009AD28B /* GD_BroadcastTopRadioModel.m in Sources */,
 				508D2D311C45EFED00B77E9D /* AFHTTPRequestOperationManager.m in Sources */,
+				C22403BE1C4CC34700775387 /* SCNavTabBarController.m in Sources */,
 				508D2D3C1C45EFED00B77E9D /* MJRefreshAutoFooter.m in Sources */,
 				508D2D4B1C45EFED00B77E9D /* MJRefreshConst.m in Sources */,
 				508D2D4F1C45EFED00B77E9D /* MKAnnotationView+WebCache.m in Sources */,
@@ -930,7 +1021,6 @@
 				508D2DAB1C4691A200B77E9D /* WGHClassFyCollectionViewController.m in Sources */,
 				508D2D441C45EFED00B77E9D /* MJRefreshBackGifFooter.m in Sources */,
 				508D2D961C464F9A00B77E9D /* WGHShowListTableViewCell.m in Sources */,
-				C20BB8241C489362000B4F18 /* GD_BroadcastRecommendCell.m in Sources */,
 				508D2D391C45EFED00B77E9D /* DCPicScrollView.m in Sources */,
 				508D2D501C45EFED00B77E9D /* NSData+ImageContentType.m in Sources */,
 				508D2D401C45EFED00B77E9D /* MJRefreshHeader.m in Sources */,

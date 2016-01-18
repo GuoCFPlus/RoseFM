@@ -12,12 +12,23 @@
 #define kLineHeight 20
 #define kIconViewWidth kScreenWidth/4
 #define kIconViewHeight (kIconViewWidth + kGap_10 + kLineHeight)
+#define kHeaderHeight 50
+#define kGap_5 5
 
-@interface WGHBroadcastMainTableViewController ()
+@interface WGHBroadcastMainTableViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property(strong,nonatomic)NSMutableArray *recommendDataArr;
+@property(strong,nonatomic)NSMutableArray *topDataArr;
+@property (nonatomic, strong) UICollectionView *collectionView;
 
 @end
 
+static NSString * const recommendMainCellId = @"recommendMainCellId";
+static NSString * const recommendCellId = @"recommendCellId";
+static NSString * const topCellId = @"topCellId";
+
 @implementation WGHBroadcastMainTableViewController
+
 
 //头视图绘制
 -(void)drawHeaderView{
@@ -62,35 +73,77 @@
 
 //头视图button点击事件
 -(void)changePage:(UIButton *)sender{
+    WGHBroadcastTypeTableViewController *typeVC = [[WGHBroadcastTypeTableViewController alloc]initWithStyle:UITableViewStylePlain];
     switch (sender.tag) {
         case 101:
         {
             DLog(@"这是本地台");
+            typeVC.radioType = @"2";
+            typeVC.provinceCode = @"110000";
+            typeVC.navigationItem.title = @"本地台";
+            [self.navigationController pushViewController:typeVC animated:YES];
             break;
         }
         case 102:
         {
             DLog(@"这是国家台");
+            typeVC.radioType = @"1";
+            typeVC.provinceCode = @"110000";
+            typeVC.navigationItem.title = @"国家台";
+            [self.navigationController pushViewController:typeVC animated:YES];
             break;
         }
         case 103:
         {
             DLog(@"这是省市台");
+            WGHBroadcastProvinceViewController *provinceVC = [[WGHBroadcastProvinceViewController alloc]init];
+            provinceVC.navigationItem.title = @"省市台";
+            [self.navigationController pushViewController:provinceVC animated:YES];
             break;
         }
         case 104:
         {
             DLog(@"这是网络台");
+            typeVC.radioType = @"3";
+            typeVC.provinceCode = @"110000";
+            typeVC.navigationItem.title = @"网络台";
+            [self.navigationController pushViewController:typeVC animated:YES];
             break;
         }
         default:
             DLog(@"出错了");
             break;
     }
+    
 }
 
+// 请求主界面 推荐
+- (void)requestRecommendData {
+    
+    __weak typeof(self) weak = self;
+    [[WGHRequestData shareRequestData] requestClassBRDataWithURL:[NSString stringWithFormat:WGH_RecommendRadioURL] block:^(NSMutableArray *array) {
+        weak.recommendDataArr = [NSMutableArray arrayWithArray:array];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 绘制视图
+            [self.tableView reloadData];
+        });
+    }];
+    
+}
 
-
+// 请求主界面 排行
+- (void)requestTopData {
+    
+    __weak typeof(self) weak = self;
+    [[WGHRequestData shareRequestData] requestClassBTDataWithURL:[NSString stringWithFormat:WGH_RecommendRadioURL] block:^(NSMutableArray *array) {
+        weak.topDataArr = [NSMutableArray arrayWithArray:array];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 绘制视图
+            [self.tableView reloadData];
+        });
+    }];
+    
+}
 
 
 - (void)viewDidLoad {
@@ -104,8 +157,47 @@
     
     //头视图绘制
     [self drawHeaderView];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:recommendMainCellId];
+    [self.tableView registerClass:[GD_BroadcastTopViewCell class] forCellReuseIdentifier:topCellId];
+    
+    //添加推荐数据
+    [self requestRecommendData];
+    //添加排行榜数据
+    [self requestTopData];
+}
+
+
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.recommendDataArr.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    GD_BroadcastRecommendViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:recommendCellId forIndexPath:indexPath];
+    GD_BroadcastRecommandRadioList *model = self.recommendDataArr[indexPath.row];
+    
+    [cell.picPathImgView sd_setImageWithURL:[NSURL URLWithString:model.picPath] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    cell.rnameLabel.text = model.rname;
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -116,23 +208,147 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 2;
 }
+ 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 0;
+    if (section == 0) {
+        return 1;
+    }
+    else
+    {
+        return self.topDataArr.count;
+    }
+    
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return 130;
+    }
+    else
+    {
+        return 80;
+    }
 }
-*/
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30;
+}
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kGap_50)];
+    headerView.backgroundColor = [UIColor whiteColor];
+    //headerView.backgroundColor = [UIColor purpleColor];
+    UIImageView *triangleImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wgh_guangbo_triangle"]];
+    triangleImgView.frame = CGRectMake(kGap_5, kGap_5, kGap_20, kGap_20);
+    [headerView addSubview:triangleImgView];
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(triangleImgView.frame), kGap_5, kScreenWidth - kGap_20 - kGap_50, kGap_20)];
+    titleLabel.font = [UIFont systemFontOfSize:15];
+    if (section == 0) {
+        
+        titleLabel.text = @"推荐电台";
+        
+    }
+    else if(section == 1)
+    {
+        titleLabel.text = @"排行榜";
+        
+        UILabel *moreLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame), kGap_5, kGap_50, kGap_20)];
+        moreLabel.text = @"更多 >";
+        moreLabel.font = [UIFont systemFontOfSize:13];
+        moreLabel.textColor = [UIColor grayColor];
+        [headerView addSubview:moreLabel];
+    }
+    else
+    {
+        titleLabel.text = @"播放历史";
+        
+        UILabel *moreLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame), kGap_5, kGap_50, kGap_20)];
+        moreLabel.text = @"更多 >";
+        moreLabel.font = [UIFont systemFontOfSize:13];
+        moreLabel.textColor = [UIColor grayColor];
+        [headerView addSubview:moreLabel];
+    }
+    
+    [headerView addSubview:titleLabel];
+    
+    return headerView;
+}
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kGap_5)];
+    if (section != 3) {
+        footerView.backgroundColor = kBgColorGray;
+    }
+    return footerView;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        //外cell
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:recommendMainCellId forIndexPath:indexPath];
+        //cell.backgroundColor = [UIColor orangeColor];
+        //内collectionView
+        
+        UICollectionViewFlowLayout *allFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+        allFlowLayout.itemSize = CGSizeMake((kScreenWidth-kGap_20)/3, (kScreenWidth-kGap_20)/3);
+        
+        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kGap_10, 0, kScreenWidth, 130) collectionViewLayout:allFlowLayout];
+        self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.collectionView.backgroundColor = [UIColor whiteColor];
+        self.collectionView.dataSource = self;
+        self.collectionView.delegate = self;
+        [cell.contentView addSubview:self.collectionView];
+        
+        [self.collectionView registerClass:[GD_BroadcastRecommendViewCell class] forCellWithReuseIdentifier:recommendCellId];
+        return cell;
+    }
+    else
+    {
+        
+        GD_BroadcastTopViewCell *cell = [tableView dequeueReusableCellWithIdentifier:topCellId forIndexPath:indexPath];
+        //cell.backgroundColor = [UIColor orangeColor];
+        GD_BroadcastTopRadioModel *model = self.topDataArr[indexPath.row];
+        if (model != nil) {
+            [cell.radioCoverLargeImgView sd_setImageWithURL:[NSURL URLWithString:model.radioCoverLarge] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+            cell.rnameLabel.text = model.rname;
+            cell.programNameLabel.text = [NSString stringWithFormat:@"直播中：%@",model.programName];
+            cell.radioPlayCountLabel.text = [NSString stringWithFormat:@"收听人数：%.1f万人",[model.radioPlayCount floatValue] /10000];
+            [cell.playButton addTarget:self action:@selector(playBroadcast:) forControlEvents:UIControlEventTouchUpInside];
+            cell.playButton.isPlay = YES;
+            
+        }
+        return cell;
+        
+    }
+}
+
+//播放事件
+-(void)playBroadcast:(GDButton *)sender{
+    if (sender.isPlay == YES) {
+        [sender setImage:[UIImage imageNamed:@"wgh_guangbo_stop"] forState:UIControlStateNormal];
+        sender.isPlay = NO;
+    }
+    else
+    {
+        [sender setImage:[UIImage imageNamed:@"wgh_guangbo_play"] forState:UIControlStateNormal];
+        sender.isPlay = YES;
+    }
+}
+
+//排行榜cell点击事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+
+
 
 /*
 // Override to support conditional editing of the table view.
