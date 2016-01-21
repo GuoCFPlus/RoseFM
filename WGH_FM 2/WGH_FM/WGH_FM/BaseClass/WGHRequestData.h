@@ -60,7 +60,8 @@ typedef void(^AlbumBlock)(NSMutableArray *array,NSMutableDictionary *dictionary)
 //广播播放页
 - (void)requestClassBPDataWithURL:(NSString *)urlStr block:(void (^)(GD_BroadcastPlayModel *))block;
 
-
+//获取定位地址
+- (void)requestClassBroadcastLocationDataWithURL:(NSString *)urlStr block:(void (^)(NSString *))block;
 
 //  榜单  数据解析方法
 

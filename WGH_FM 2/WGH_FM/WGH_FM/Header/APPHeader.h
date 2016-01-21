@@ -47,6 +47,7 @@
 #import "WGHBroadcastTypeTableViewController.h"
 #import "WGHBroadcastProvinceViewController.h"
 #import "WGHBroadcastRankMoreTableViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 #import "GD_BroadcastTypeView.h"
 #import "GD_BroadcastTopViewCell.h"

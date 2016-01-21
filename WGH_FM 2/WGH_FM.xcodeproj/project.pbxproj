@@ -122,6 +122,8 @@
 		50FEE3411C4CECB600157CFB /* WGHHotListProgramCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FEE33E1C4CECB600157CFB /* WGHHotListProgramCell.m */; };
 		C226503B1C4E1B52009D6A9B /* WGHBroadcastPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C226503A1C4E1B52009D6A9B /* WGHBroadcastPlayViewController.m */; };
 		C2EC70711C5080FC00A24246 /* WGHBroadcastLiveTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EC70701C5080FC00A24246 /* WGHBroadcastLiveTools.m */; };
+		C2EC70731C50F9CD00A24246 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EC70721C50F9CD00A24246 /* CoreLocation.framework */; };
+		C2EC70751C5121F700A24246 /* henan.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C2EC70741C5121F700A24246 /* henan.gpx */; };
 		C2F1FD9B1C4F307300B70D48 /* GD_BroadcastPlayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1FD9A1C4F307300B70D48 /* GD_BroadcastPlayModel.m */; };
 /* End PBXBuildFile section */
 
@@ -361,6 +363,8 @@
 		C226503A1C4E1B52009D6A9B /* WGHBroadcastPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGHBroadcastPlayViewController.m; sourceTree = "<group>"; };
 		C2EC706F1C5080FC00A24246 /* WGHBroadcastLiveTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGHBroadcastLiveTools.h; sourceTree = "<group>"; };
 		C2EC70701C5080FC00A24246 /* WGHBroadcastLiveTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGHBroadcastLiveTools.m; sourceTree = "<group>"; };
+		C2EC70721C50F9CD00A24246 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C2EC70741C5121F700A24246 /* henan.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = henan.gpx; sourceTree = "<group>"; };
 		C2F1FD991C4F307300B70D48 /* GD_BroadcastPlayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GD_BroadcastPlayModel.h; sourceTree = "<group>"; };
 		C2F1FD9A1C4F307300B70D48 /* GD_BroadcastPlayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GD_BroadcastPlayModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -370,6 +374,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2EC70731C50F9CD00A24246 /* CoreLocation.framework in Frameworks */,
 				508D2D601C45EFED00B77E9D /* libUMSocial_Sdk_4.4.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +430,8 @@
 		508D2C721C45E70B00B77E9D = {
 			isa = PBXGroup;
 			children = (
+				C2EC70741C5121F700A24246 /* henan.gpx */,
+				C2EC70721C50F9CD00A24246 /* CoreLocation.framework */,
 				508D2C7D1C45E70B00B77E9D /* WGH_FM */,
 				508D2C7C1C45E70B00B77E9D /* Products */,
 			);
@@ -1037,6 +1044,7 @@
 				508D2D5F1C45EFED00B77E9D /* UMSocialLocalizable.strings in Resources */,
 				508D2D4A1C45EFED00B77E9D /* MJRefresh.bundle in Resources */,
 				508D2C891C45E70B00B77E9D /* Main.storyboard in Resources */,
+				C2EC70751C5121F700A24246 /* henan.gpx in Resources */,
 				508D2D661C45EFED00B77E9D /* UMSLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -275,7 +275,14 @@ static NSString *const broadcastListCellID = @"broadcastListCellID";
             weak.playDetailModel = model;
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 绘制视图
-                weak.navigationItem.title = weak.playModel.rname;
+                //推荐电台
+                if (self.isRecommend == NO) {
+                    weak.navigationItem.title = weak.playModelRecommand.rname;
+                }
+                else
+                {
+                    weak.navigationItem.title = weak.playModel.rname;
+                }
                 //[weak.bgImgView sd_setImageWithURL:[NSURL URLWithString:weak.playModel.radioCoverLarge] placeholderImage:[UIImage imageNamed:@"wgh_user_header_stretching"]];
                 weak.programNameLabel.text = weak.playDetailModel.programName;
                 if (weak.playDetailModel.announcerList.count > 0) {

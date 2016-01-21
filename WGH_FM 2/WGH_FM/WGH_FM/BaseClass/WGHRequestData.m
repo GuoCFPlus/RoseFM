@@ -189,6 +189,19 @@ static WGHRequestData *request = nil;
     
 }
 
+//获取定位地址
+- (void)requestClassBroadcastLocationDataWithURL:(NSString *)urlStr block:(void (^)(NSString *))block {
+    
+    AFHTTPRequestOperationManager * manger = [AFHTTPRequestOperationManager manager];
+    [manger GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary * dic = (NSDictionary *)responseObject;
+        block(dic[@"provinceCode"]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+}
+
 //本地台解析
 - (void)requestClassBroadcastTypeDataWithURL:(NSString *)urlStr block:(void (^)(NSMutableArray *))block {
     

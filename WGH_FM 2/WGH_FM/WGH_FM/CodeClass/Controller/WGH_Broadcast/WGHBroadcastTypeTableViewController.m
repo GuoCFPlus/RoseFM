@@ -8,11 +8,18 @@
 
 #import "WGHBroadcastTypeTableViewController.h"
 
-@interface WGHBroadcastTypeTableViewController ()
-
+@interface WGHBroadcastTypeTableViewController ()<CLLocationManagerDelegate>
+//数据数组
 @property (strong, nonatomic)NSMutableArray *dataArr;
-
+//页码
 @property (assign, nonatomic)int pageNum;
+//定位管理类
+@property (nonatomic, strong) CLLocationManager  *locationManager;
+//编码和反编码工具类
+@property(nonatomic,strong)CLGeocoder *geo;
+
+@property(assign,nonatomic)CGFloat latitude;
+@property(assign,nonatomic)CGFloat longitude;
 
 @end
 
@@ -46,9 +53,115 @@ static NSString *const typeCellId = @"typeCellId";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    //判断当前设备是否支持定位
+    if ([CLLocationManager locationServicesEnabled]) {
+        DLog(@"支持定位");
+    }
+    else
+    {
+        DLog(@"不支持定位");
+    }
+    //定位功能
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    
+    //向系统和用户申请使用权限
+    if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse) {
+        //判断当前状态是拒绝的话，开始申请
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    //定位的精度（效果）如何
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    //多少米定位一次
+    self.locationManager.distanceFilter = 10;
+    //始终允许访问位置信息
+    //[self.locationManager requestAlwaysAuthorization];
+    //使用应用程序期间允许访问位置数据
+    //[self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+//    // 编码与反编码初始化
+//    self.geo = [[CLGeocoder alloc] init];
+//    // 反编码
+//    [self getCityNameWithCoordinate:CLLocationCoordinate2DMake(self.latitude, self.longitude)];
+    
+    //[self getCityNameWithCoordinate:CLLocationCoordinate2DMake(40, 116)];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView registerClass:[GD_BroadcastTopViewCell class] forCellReuseIdentifier:typeCellId];
+    
+}
+
+//获取到位置数据，返回的是一个CLLocation的数组，一般使用其中的一个
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+//    CLLocation *currLocation = [locations lastObject];
+//    DLog(@"经度=%f 纬度=%f 高度=%f", currLocation.coordinate.latitude, currLocation.coordinate.longitude, currLocation.altitude);
+//    self.latitude = currLocation.coordinate.latitude;
+//    self.longitude = currLocation.coordinate.longitude;
+    
+    //获取经纬度,拼接url字符串
+    CLLocation *loc=locations.lastObject;
+
+    NSString *str = [NSString stringWithFormat:@"http://location.ximalaya.com/locationService/location?device=iPhone&ip=%%28null%%29&latitude=%f&longitude=%f&uid=0&version=v1",loc.coordinate.latitude,loc.coordinate.longitude];
+    DLog(@"%@",str);
+    [[WGHRequestData shareRequestData] requestClassBroadcastLocationDataWithURL:str block:^(NSString *locationCode) {
+        self.provinceCode = locationCode;
+        DLog(@"%@",self.provinceCode);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 绘制视图
+            [self.tableView reloadData];
+            
+        });
+    }];
+    [self.locationManager stopUpdatingLocation];
+    
+}
+
+//获取用户位置数据失败的回调方法，在此通知用户
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    if ([error code] == kCLErrorDenied)
+    {
+        //访问被拒绝
+        DLog(@"访问被拒绝");
+    }
+    if ([error code] == kCLErrorLocationUnknown) {
+        //无法获取位置信息
+        DLog(@"无法获取位置信息");
+    }
+}
+
+//在viewWillDisappear关闭定位
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_locationManager stopUpdatingLocation];
+}
+
+//反编码，根据坐标返回城市名称
+-(void)getCityNameWithCoordinate:(CLLocationCoordinate2D)coor{
+    
+    CLLocation *locat = [[CLLocation alloc]initWithLatitude:coor.latitude longitude:coor.longitude];
+    [self.geo reverseGeocodeLocation:locat completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (error) {
+            DLog(@"反编码失败：%@",error);
+        }
+        CLPlacemark *placeMark = [placemarks lastObject];
+        //遍历结果
+        [placeMark.addressDictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            if ( [key isEqualToString:@"FormattedAddressLines"]) {
+                for (NSString *str in obj) {
+                    DLog(@"===%@",str);
+                }
+            }else
+            {
+                DLog(@"%@ : %@",key, obj);
+            }
+        }];
+    }];
     
 }
 
