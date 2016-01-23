@@ -1,0 +1,19 @@
+//
+//  WGHPrefixHeader.pch
+//  WGH_FM
+//
+//  Created by 吴凯强 on 16/1/13.
+//  Copyright © 2016年 吴凯强. All rights reserved.
+//
+
+#ifndef WGHPrefixHeader_pch
+#define WGHPrefixHeader_pch
+
+
+#import "APPHeader.h"
+#import "KEYHeader.h"
+#import "THRHeader.h"
+#import "URLHeader.h"
+
+
+#endif /* WGHPrefixHeader_pch */
