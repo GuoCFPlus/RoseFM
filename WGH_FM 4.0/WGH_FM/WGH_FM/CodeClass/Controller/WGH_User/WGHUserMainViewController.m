@@ -276,12 +276,8 @@
     }else if (indexPath.section == 2 && indexPath.row == 0) {
         
     }else if (indexPath.section == 2 && indexPath.row == 1) {
-        
-    }else {
         [self changedSetAction];
     }
-    
-    
 }
 
 // 跳转播放历史界面
